@@ -3,62 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মাদরাসা ম্যানেজমেন্ট সিস্টেম</title>
+    <title>সাওতুল কুরআন ইন্টারন্যাশনাল হিফয মাদরাসা EMS</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .panel { display: none; }
+        .active { display: block; }
+        @media print { .no-print { display: none; } }
+    </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 p-4">
 
-    <!-- লগইন প্যানেল -->
     <div id="login-screen" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50 p-4">
         <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm">
-            <h2 class="text-2xl font-bold mb-6 text-center text-emerald-800">লগইন প্যানেল</h2>
+            <h2 class="text-2xl font-bold mb-6 text-center text-emerald-800">প্যানেল লগইন</h2>
             <select id="userRole" class="w-full border p-3 rounded-lg mb-4">
-                <option value="admin">এডমিন</option>
-                <option value="teacher">শিক্ষক</option>
-                <option value="guardian">অভিভাবক</option>
+                <option value="admin">এডমিন প্যানেল</option>
+                <option value="teacher">শিক্ষক প্যানেল</option>
+                <option value="guardian">অভিভাবক প্যানেল</option>
             </select>
             <input type="password" id="password" placeholder="গোপন কোড" class="w-full border p-3 rounded-lg mb-6">
             <button onclick="handleLogin()" class="w-full bg-emerald-700 text-white py-3 rounded-lg font-bold">প্রবেশ করুন</button>
         </div>
     </div>
 
-    <!-- মূল অ্যাপ্লিকেশন -->
-    <div id="main-app" class="hidden p-4 max-w-4xl mx-auto">
+    <div id="main-app" class="hidden max-w-5xl mx-auto">
         <header class="bg-white p-6 rounded-xl shadow mb-6 text-center">
             <h1 class="text-2xl font-bold text-emerald-900">সাওতুল কুরআন ইন্টারন্যাশনাল হিফয মাদরাসা</h1>
-            <p id="user-info" class="text-sm text-gray-500 mt-2"></p>
+            <p id="user-info" class="text-sm text-gray-500 mt-2 font-bold"></p>
         </header>
 
-        <!-- এডমিন কন্ট্রোল প্যানেল -->
-        <div id="admin-panel" class="hidden bg-white p-6 rounded-xl shadow mb-6">
-            <h2 class="text-xl font-bold mb-4">এডমিন কনফিগারেশন</h2>
+        <div id="adminPanel" class="panel bg-white p-6 rounded-xl shadow mb-6 border-l-8 border-red-600">
+            <h2 class="text-xl font-bold mb-4">এডমিন ড্যাশবোর্ড</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="ক্লাস বা নতুন তথ্য যোগ করুন" class="border p-2 rounded">
-                <button class="bg-blue-600 text-white p-2 rounded">সংরক্ষণ করুন</button>
+                <div class="border p-4 rounded">
+                    <label class="font-bold">ক্যাডেট নম্বর সেট করুন (SQIHMC-XXXX):</label>
+                    <div class="flex mt-2">
+                        <span class="bg-gray-200 p-2 rounded-l border border-r-0">SQIHMC-</span>
+                        <input type="text" id="cadetInput" placeholder="001" class="border p-2 rounded-r w-full">
+                    </div>
+                </div>
+                <button onclick="alert('সংশোধন সেভ হয়েছে!')" class="bg-blue-600 text-white px-6 py-2 rounded">ডাটাবেস সংশোধন করুন</button>
             </div>
         </div>
 
-        <!-- ভর্তি ও রেজাল্ট সেকশন -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="font-bold text-lg mb-4">অনলাইন ভর্তি ফরম</h3>
-                <form class="space-y-3">
-                    <input type="text" placeholder="শিক্ষার্থীর নাম" class="w-full border p-2 rounded">
-                    <select class="w-full border p-2 rounded">
-                        <option>নার্সারী থেকে অষ্টম শ্রেণি</option>
-                        <option>কায়দা, আমপারা, নাযেরা, হিফয</option>
-                    </select>
-                    <input type="text" placeholder="পিতার নাম ও পেশা" class="w-full border p-2 rounded">
-                    <input type="text" placeholder="মাতার নাম ও পেশা" class="w-full border p-2 rounded">
-                    <input type="text" placeholder="গ্রাম, থানা, ডাকঘর, উপজেলা, জেলা" class="w-full border p-2 rounded">
-                    <button class="w-full bg-green-600 text-white py-2 rounded">আবেদন জমা দিন</button>
-                </form>
-            </div>
+        <div id="teacherPanel" class="panel bg-white p-6 rounded-xl shadow mb-6 border-l-8 border-blue-600">
+            <h2 class="text-xl font-bold mb-4">শিক্ষক প্যানেল: রেজাল্ট তৈরি</h2>
+            <p>শ্রেণি শিক্ষকরা এখান থেকে রেজাল্ট ইনপুট দিবেন। (এডমিন এপ্রুভাল সাপেক্ষে)</p>
+        </div>
 
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="font-bold text-lg mb-4">অনলাইন রেজাল্ট</h3>
-                <button onclick="showResult()" class="w-full bg-indigo-600 text-white py-3 rounded">রেজাল্ট কার্ড দেখুন</button>
-            </div>
+        <div id="guardianPanel" class="panel bg-white p-6 rounded-xl shadow mb-6 border-l-8 border-green-600">
+            <h2 class="text-xl font-bold mb-4">অনলাইন ভর্তি ও ফলাফল</h2>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" placeholder="শিক্ষার্থীর নাম" class="border p-2 rounded">
+                <input type="text" placeholder="পিতার নাম ও পেশা" class="border p-2 rounded">
+                <input type="text" placeholder="মাতার নাম ও পেশা" class="border p-2 rounded">
+                <input type="text" placeholder="মোবাইল নম্বর" class="border p-2 rounded">
+                <input type="text" placeholder="গ্রাম, থানা, ডাকঘর, উপজেলা, জেলা, বিভাগ" class="col-span-2 border p-2 rounded">
+                <button class="col-span-2 bg-emerald-700 text-white p-3 rounded font-bold">আবেদন জমা দিন</button>
+            </form>
         </div>
     </div>
 
@@ -69,18 +71,15 @@
             const role = document.getElementById('userRole').value;
 
             if (role === 'admin' && pass !== secret) {
-                return alert("ভুল কোড! শুধুমাত্র এডমিন প্রবেশ করতে পারবেন।");
+                return alert("ভুল কোড!");
             }
 
             document.getElementById('login-screen').classList.add('hidden');
             document.getElementById('main-app').classList.remove('hidden');
             document.getElementById('user-info').innerText = "স্বাগতম: " + role.toUpperCase();
             
-            if(role === 'admin') document.getElementById('admin-panel').classList.remove('hidden');
-        }
-
-        function showResult() {
-            alert("রেজাল্ট কার্ড জেনারেট হচ্ছে... এখানে গ্রেড, GPA, এবং পজিশন অটোমেটিক দেখাবে।");
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.getElementById(role + 'Panel').classList.add('active');
         }
     </script>
 </body>
