@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সাওতুল কুরআন ইন্টারন্যাশনাল হিফয মাদরাসা কক্সবাজার - EMS Pro</title>
+    <!-- Tailwind CSS for modern design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for premium look -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            DEFAULT: '#047857',
+                            dark: '#064e3b',
+                            light: '#34d399',
+                        },
+                        gold: '#d97706',
+                        slate: {
+                            DEFAULT: '#1e293b',
+                            light: '#f8fafc',
+                        }
+                    },
+                    fontFamily: {
+                        bengali: ['Hind Siliguri', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f1f5f9;
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-area {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                background-color: white !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800 antialiased flex flex-col">
+
+    <!-- TOP HEADER -->
+    <header class="bg-gradient-to-r from-emerald-900 to-emerald-700 text-white shadow-lg sticky top-0 z-40 no-print">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-white p-1 rounded-full text-emerald-800 w-14 h-14 flex items-center justify-center shadow-inner overflow-hidden">
+                    <img id="main-logo-view" src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=100" alt="Logo" class="w-full h-full object-cover rounded-full">
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide">সাওতুল কুরআন ইন্টারন্যাশনাল হিফয মাদরাসা</h1>
+                    <p class="text-xs text-emerald-200">বনফুল শো-রুমের ২য় তলা,接受মুজাহের মার্কেট, তারাবনিয়ার ছরা, কক্সবাজার।</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 mt-3 md:mt-0 text-sm">
+                <div class="bg-emerald-800/80 px-3 py-1.5 rounded-lg border border-emerald-600">
+                    <i class="fa-solid fa-phone mr-1 text-gold"></i> ০১৮৩৬-১৫৯১৪৩
+                </div>
+                <div class="bg-emerald-800/80 px-3 py-1.5 rounded-lg border border-emerald-600">
+                    <i class="fa-solid fa-user-shield mr-1 text-gold"></i> এডমিন: ০১৮৩৯-৩৬৯৩৮৮
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP WRAPPER -->
+    <div class="flex-grow max-w-7xl w-full mx-auto p-4 flex flex-col lg:flex-row gap-6 no-print">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="w-full lg:w-64 bg-white rounded-2xl shadow-md p-4 flex flex-col gap-2 h-fit">
+            <div class="border-b pb-3 mb-2 text-center">
+                <h3 class="font-bold text-slate-800">ম্যানেজমেন্ট প্যানেল</h3>
+                <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-medium">শিক্ষা পরিচালক (এডমিন)</span>
+            </div>
+            
+            <nav class="flex flex-row lg:flex-col gap-1 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 bg-emerald-50 text-emerald-800 font-semibold text-left whitespace-nowrap">
+                    <i class="fa-solid fa-chart-line text-lg w-5"></i> ড্যাশবোর্ড
+                </button>
+                <button onclick="switchTab('admission')" id="btn-admission" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 text-slate-600 hover:bg-slate-50 font-medium text-left whitespace-nowrap">
+                    <i class="fa-solid fa-user-plus text-lg w-5"></i> নতুন ভর্তি ফরম
+                </button>
+                <button onclick="switchTab('students')" id="btn-students" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 text-slate-600 hover:bg-slate-50 font-medium text-left whitespace-nowrap">
+                    <i class="fa-solid fa-users text-lg w-5"></i> শিক্ষার্থী তালিকা
+                </button>
+                <button onclick="switchTab('exams')" id="btn-exams" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 text-slate-600 hover:bg-slate-50 font-medium text-left whitespace-nowrap">
+                    <i class="fa-solid fa-graduation-cap text-lg w-5"></i> পরীক্ষা ও রেজাল্ট
+                </button>
+                <button onclick="switchTab('staff')" id="btn-staff" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 text-slate-600 hover:bg-slate-50 font-medium text-left whitespace-nowrap">
+                    <i class="fa-solid fa-user-tie text-lg w-5"></i> শিক্ষক ও স্টাফ
+                </button>
+                <button onclick="switchTab('payroll')" id="btn-payroll" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 text-slate-600 hover:bg-slate-50 font-medium text-left whitespace-nowrap">
+                    <i class="fa-solid fa-wallet text-lg w-5"></i> বেতন ও হাজিরা
+                </button>
+                <button onclick="switchTab('settings')" id="btn-settings" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 text-slate-600 hover:bg-slate-50 font-medium text-left whitespace-nowrap">
+                    <i class="fa-solid fa-sliders text-lg w-5"></i> এডমিন সেটিংস ও পোস্ট
+                </button>
+            </nav>
+        </aside>
+
+        <!-- DYNAMIC VIEWS CONTAINER -->
+        <main class="flex-grow bg-white rounded-2xl shadow-md p-6 min-h-[500px]">
+            
+            <!-- VIEW: DASHBOARD -->
+            <section id="view-dashboard" class="tab-view space-y-6">
+                <div class="flex justify-between items-center border-b pb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">ওভারভিউ ড্যাশবোর্ড</h2>
+                        <p class="text-sm text-slate-500">মাদরাসার সার্বিক তথ্য এক নজরে</p>
+                    </div>
+                </div>
+
+                <!-- METRICS GRID -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded-xl border border-emerald-200 flex items-center justify-between shadow-sm">
+                        <div>
+                            <p class="text-xs text-slate-500 font-bold">মোট শিক্ষার্থী</p>
+                            <h4 id="metric-students" class="text-3xl font-extrabold text-emerald-800 mt-1">০</h4>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border border-blue-200 flex items-center justify-between shadow-sm">
+                        <div>
+                            <p class="text-xs text-slate-500 font-bold">शिक्ষক ও স্টাফ</p>
+                            <h4 id="metric-staff" class="text-3xl font-extrabold text-blue-800 mt-1">০</h4>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-xl border border-amber-200 flex items-center justify-between shadow-sm">
+                        <div>
+                            <p class="text-xs text-slate-500 font-bold">আজকের উপস্থিতি</p>
+                            <h4 class="text-3xl font-extrabold text-amber-800 mt-1">৯৫%</h4>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border border-purple-200 flex items-center justify-between shadow-sm">
+                        <div>
+                            <p class="text-xs text-slate-500 font-bold">মাসিক পে-রোল</p>
+                            <h4 id="metric-payroll" class="text-3xl font-extrabold text-purple-800 mt-1">০ ৳</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOTICE AND DAFATAR ACTIVITY SPLIT -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <!-- Notice Board -->
+                    <div class="bg-slate-50 p-5 rounded-xl border space-y-3">
+                        <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-bullhorn text-red-500"></i> নোটিশ বোর্ড
+                        </h3>
+                        <div id="notice-board-list" class="space-y-3 max-h-64 overflow-y-auto">
+                            <!-- notices show up here -->
+                        </div>
+                    </div>
+
+                    <!-- Media/Activities Board -->
+                    <div class="bg-slate-50 p-5 rounded-xl border space-y-3">
+                        <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-images text-emerald-600"></i> দৈনন্দিন কার্যক্রম ও মিডিয়া
+                        </h3>
+                        <div id="media-board-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-64 overflow-y-auto">
+                            <!-- activities show up here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW: ADMISSION FORM -->
+            <section id="view-admission" class="tab-view hidden space-y-6">
+                <!-- (Keep original form structure, working dynamically behind) -->
+                <div class="border-b pb-4">
+                    <h2 class="text-2xl font-bold text-slate-800">ভর্তি ফরম (Admission Form)</h2>
+                </div>
+                <form id="admission-form" onsubmit="handleAdmissionSubmit(event)" class="space-y-6">
+                    <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-emerald-800 mb-1">ক্যাডেট নং</label>
+                            <input type="text" id="adm-cadet" class="w-full bg-emerald-100 border border-emerald-200 rounded-lg p-2.5 font-bold text-emerald-800 cursor-not-allowed" readonly>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-emerald-800 mb-1">ভর্তির তারিখ</label>
+                            <input type="date" id="adm-date" class="w-full border rounded-lg p-2.5" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-emerald-800 mb-1">সেশন</label>
+                            <input type="text" id="adm-session" value="২০২৬-২০২৭" class="w-full border rounded-lg p-2.5">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">শিক্ষার্থীর নাম (বাংলায়)</label>
+                            <input type="text" id="adm-name-bn" class="w-full border rounded-lg p-2.5" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">শিক্ষार्थियों নাম (ইংরেজীতে)</label>
+                            <input type="text" id="adm-name-en" class="w-full border rounded-lg p-2.5" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">জন্মতারিখ</label>
+                            <input type="date" id="adm-dob" class="w-full border rounded-lg p-2.5" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">জন্মনিবন্ধন নম্বর</label>
+                            <input type="text" id="adm-birth-reg" class="w-full border rounded-lg p-2.5" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">রক্তের গ্রুপ</label>
+                            <input type="text" id="adm-blood" class="w-full border rounded-lg p-2.5" placeholder="O+">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">ছবি ইউআরএল/লিংক</label>
+                            <input type="text" id="adm-photo" class="w-full border rounded-lg p-2.5" value="https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&q=80&w=200">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-50 p-3 rounded-lg border">
+                        <div><label class="block text-xs font-semibold">বিভাগ</label><select id="adm-dept" class="w-full border rounded p-2"><option>হিফয</option><option>জেনারেল</option></select></div>
+                        <div><label class="block text-xs font-semibold">ক্যাটাগরি</label><select id="adm-cat" class="w-full border rounded p-2"><option>আবাসিক</option><option>অনাবাসিক</option></select></div>
+                        <div><label class="block text-xs font-semibold">শ্রেণি</label><select id="adm-class" class="w-full border rounded p-2"><option>প্রথম</option><option>দ্বিতীয়</option><option>তৃতীয়</option></select></div>
+                        <div><label class="block text-xs font-semibold">গ্রুপ</label><select id="adm-group" class="w-full border rounded p-2"><option>নাযেরা</option><option>হিফয</option><option>কায়দা</option></select></div>
+                    </div>
+                    <!-- Guardian Fields -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="block text-xs font-semibold">পিতার নাম</label><input type="text" id="adm-father" class="w-full border rounded p-2" required></div>
+                        <div><label class="block text-xs font-semibold">পিতার মোবাইল</label><input type="text" id="adm-f-phone" class="w-full border rounded p-2" required></div>
+                    </div>
+                    <div><label class="block text-xs font-semibold">বর্তমান ঠিকানা</label><textarea id="adm-pres-addr" class="w-full border rounded p-2" required>তারাবনিয়ার ছরা, কক্সবাজার</textarea></div>
+                    <button type="submit" class="bg-emerald-700 text-white px-6 py-2 rounded-xl font-bold">ভর্তি সম্পন্ন করুন</button>
+                </form>
+            </section>
+
+            <!-- VIEW: STUDENTS LIST -->
+            <section id="view-students" class="tab-view hidden space-y-6">
+                <div class="flex justify-between border-b pb-4">
+                    <h2 class="text-2xl font-bold text-slate-800">শিক্ষার্থী তালিকা</h2>
+                </div>
+                <div class="overflow-x-auto border rounded-xl bg-white shadow-inner">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-slate-50 border-b">
+                            <tr>
+                                <th class="p-3">ক্যাডেট নং</th>
+                                <th class="p-3">নাম</th>
+                                <th class="p-3">শ্রেণি</th>
+                                <th class="p-3">মোবাইল</th>
+                                <th class="p-3 text-right">অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="student-table-body" class="divide-y"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- VIEW: EXAMS & RESULTS -->
+            <section id="view-exams" class="tab-view hidden space-y-6">
+                <div class="border-b pb-4">
+                    <h2 class="text-2xl font-bold text-slate-800">পরীক্ষা ও রেজাল্ট</h2>
+                </div>
+                <div class="grid grid-cols-3 gap-4 bg-slate-50 p-4 rounded-xl border">
+                    <div><label class="block text-xs font-bold mb-1">ছাত্র সিলেক্ট</label><select id="exam-student-select" class="w-full border rounded p-2" onchange="loadExamForm()"></select></div>
+                    <div><label class="block text-xs font-bold mb-1">টার্ম</label><select id="exam-term-select" class="w-full border rounded p-2"><option value="Half-Yearly">অর্ধ বার্ষিক</option><option value="Yearly">বার্ষিক</option></select></div>
+                    <div class="flex items-end"><button onclick="calculateFinalResults()" class="bg-emerald-700 text-white w-full py-2 rounded font-bold">রেজাল্ট জেনারেট</button></div>
+                </div>
+                <div id="marks-input-container" class="border rounded-xl p-4 bg-white hidden">
+                    <div id="subject-fields-wrapper" class="grid grid-cols-2 gap-4"></div>
+                </div>
+                <!-- Result Report -->
+                <div id="simulated-report-card" class="hidden border rounded-xl p-6 bg-white shadow print-area">
+                    <div class="text-center border-b-2 border-emerald-800 pb-3 mb-4">
+                        <img id="rc-logo" src="" class="w-12 h-12 mx-auto rounded-full object-cover">
+                        <h3 class="text-xl font-bold text-emerald-800 mt-1">সাওতুল কুরআন ইন্টারন্যাশনাল হিফয মাদরাসা</h3>
+                        <p class="text-xs text-slate-500">তারাবনিয়ার ছরা, কক্সবাজার</p>
+                    </div>
+                    <div class="text-xs space-y-1 mb-4 grid grid-cols-2">
+                        <div><strong>নাম:</strong> <span id="rc-student-name"></span></div>
+                        <div><strong>ক্যাডেট আইডি:</strong> <span id="rc-cadet-no"></span></div>
+                    </div>
+                    <table class="w-full text-xs text-center border">
+                        <thead class="bg-slate-50"><tr><th class="p-2 text-left">বিষয়</th><th class="p-2">MT (২০)</th><th class="p-2">মূল (৮০)</th><th class="p-2">মোট</th><th class="p-2">গ্রেড</th></tr></thead>
+                        <tbody id="rc-marks-table-body" class="divide-y"></tbody>
+                    </table>
+                    <div class="mt-4 p-2 bg-slate-50 text-right font-bold text-sm">মোট নম্বর: <span id="rc-grand-total"></span></div>
+                    <button onclick="window.print()" class="no-print bg-slate-800 text-white px-4 py-1.5 rounded text-xs mt-3"><i class="fa-solid fa-print"></i> প্রিন্ট</button>
+                </div>
+            </section>
+
+            <!-- VIEW: STAFF DIRECTORY -->
+            <section id="view-staff" class="tab-view hidden space-y-6">
+                <div class="flex justify-between border-b pb-4">
+                    <h2 class="text-2xl font-bold text-slate-800">শিক্ষক ও স্টাফ ডিরেক্টরি</h2>
+                </div>
+                <div id="staff-grid" class="grid grid-cols-2 gap-4"></div>
+            </section>
+
+            <!-- VIEW: PAYROLL -->
+            <section id="view-payroll" class="tab-view hidden space-y-6">
+                <div class="border-b pb-4"><h2 class="text-2xl font-bold text-slate-800">বেতন ও হাজিরা</h2></div>
+                <table class="w-full text-left text-sm border"><thead class="bg-slate-50"><tr><th class="p-3">আইডি</th><th class="p-3">নাম</th><th class="p-3">অনুপস্থিতি দিন</th><th class="p-3">নেট সেলারী</th></tr></thead><tbody id="payroll-table-body" class="divide-y"></tbody></table>
+            </section>
+
+            <!-- VIEW: ADMIN SETTINGS & POST BOARD -->
+            <section id="view-settings" class="tab-view hidden space-y-6">
+                <div class="border-b pb-4">
+                    <h2 class="text-2xl font-bold text-slate-800">এডমিন কন্ট্রোল ও পোস্ট সেটিংস</h2>
+                    <p class="text-sm text-slate-500">লগো বদলানো, নোটিশ জারি এবং দৈনন্দিন কার্যক্রম আপডেট করার এক্সক্লুসিভ প্যানেল</p>
+                </div>
+
+                <!-- 1. Logo Settings -->
+                <div class="bg-slate-50 p-4 rounded-xl border space-y-3">
+                    <h3 class="font-bold text-slate-800"><i class="fa-solid fa-image text-gold mr-2"></i>মাদরাসা লোগো পরিবর্তন করুন</h3>
+                    <div class="flex gap-4 items-center">
+                        <input type="text" id="setting-logo-url" class="flex-grow border rounded-lg p-2 bg-white text-sm" placeholder="লোগো ইমেজের অনলাইন লিংক/URL দিন...">
+                        <button onclick="updateSystemLogo()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-5 py-2 rounded-lg text-sm transition">আপডেট লোগো</button>
+                    </div>
+                </div>
+
+                <!-- 2. Post a Notice -->
+                <div class="bg-slate-50 p-4 rounded-xl border space-y-3">
+                    <h3 class="font-bold text-slate-800"><i class="fa-solid fa-bullhorn text-red-500 mr-2"></i>নতুন নোটিশ প্রকাশ করুন</h3>
+                    <div class="grid grid-cols-1 gap-3">
+                        <input type="text" id="notice-title" class="border rounded-lg p-2 bg-white text-sm" placeholder="নোটিশের শিরোনাম...">
+                        <textarea id="notice-desc" class="border rounded-lg p-2 bg-white text-sm" rows="2" placeholder="বিস্তারিত বিবরণ লিখুন..."></textarea>
+                        <button onclick="submitNotice()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-2 rounded-lg text-sm transition">নোটিশ পোস্ট করুন</button>
+                    </div>
+                </div>
+
+                <!-- 3. Daily Activities Media Post -->
+                <div class="bg-slate-50 p-4 rounded-xl border space-y-3">
+                    <h3 class="font-bold text-slate-800"><i class="fa-solid fa-photo-film text-blue-600 mr-2"></i>দৈনন্দিন কার্যক্রম পোস্ট (ছবি / ভিডিও লিংক)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input type="text" id="media-title" class="border rounded-lg p-2 bg-white text-sm" placeholder="কার্যক্রমের নাম/ক্যাপশন...">
+                        <input type="text" id="media-url" class="border rounded-lg p-2 bg-white text-sm" placeholder="ছবি অথবা ভিডিওর অনলাইন লিংক (URL)...">
+                    </div>
+                    <button onclick="submitMedia()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold w-full py-2 rounded-lg text-sm transition">মিডিয়া গ্যালারিতে যোগ করুন</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- PRINTABLE ID CARD OVERLAY CONTAINER -->
+    <div id="id-card-preview-container" class="fixed inset-0 bg-slate-900/80 z-50 items-center justify-center p-4 hidden flex no-print">
+        <div class="bg-white rounded-2xl w-full max-w-lg p-6 relative">
+            <button onclick="closeIdCardPreview()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-circle-xmark text-2xl"></i></button>
+            <div id="id-card-render-area" class="space-y-4 print-area flex flex-col items-center">
+                <!-- ID Card Front -->
+                <div class="w-[310px] h-[460px] bg-gradient-to-b from-emerald-950 via-emerald-900 to-slate-900 rounded-2xl p-4 shadow-xl text-white relative flex flex-col justify-between items-center text-center border-2 border-gold">
+                    <div class="w-full flex items-center justify-center gap-1.5 border-b border-gold/30 pb-1">
+                        <img id="id-card-m-logo" src="" class="w-7 h-7 rounded-full object-cover">
+                        <span class="text-[11px] font-bold tracking-wide text-gold">সাওতুল কুরআন ইন্টঃ হিফয মাদরাসা</span>
+                    </div>
+                    <div class="flex flex-col items-center w-full">
+                        <div class="w-24 h-24 rounded-full border-4 border-gold overflow-hidden mb-2"><img id="id-photo" src="" class="w-full h-full object-cover"></div>
+                        <div id="id-name" class="font-bold text-md text-white">...</div>
+                        <div id="id-role" class="text-[10px] text-gold font-semibold uppercase tracking-wider mb-2">...</div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl px-3 py-2 w-full text-xs text-left space-y-1">
+                            <div>ID: <span id="id-number" class="font-bold text-gold"></span></div>
+                            <div>শ্রেণি/গ্রুপ: <span id="id-class-group"></span></div>
+                            <div>রক্তের গ্রুপ: <span id="id-blood"></span></div>
+                        </div>
+                    </div>
+                    <div class="text-[8px] text-emerald-200">তারাবনিয়ার ছরা, কক্সবাজার | ০১৮৩৬-১৫৯১৪৩</div>
+                </div>
+            </div>
+            <div class="mt-4 flex justify-end gap-2"><button onclick="closeIdCardPreview()" class="px-4 py-2 border rounded-lg text-sm">বন্ধ</button><button onclick="window.print()" class="bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg text-sm">প্রিন্ট</button></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-800 text-slate-400 py-4 text-center text-sm border-t border-slate-700 mt-auto no-print">
+        <p>&copy; ২০২৬ সাওতুল কুরআন ইন্টারন্যাশনাল হিফয মাদরাসা কক্সবাজার। প্রশাসনিক কর্মকর্তা ও শিক্ষা পরিচালক: মোহাম্মদ রিয়াজ</p>
+    </footer>
+
+    <!-- LIVE DATABASE ENGINE -->
+    <script>
+        const MadrasahSystem = {
+            logo: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=100',
+            notices: [
+                { id: 1, title: 'অর্ধ-বার্ষিক পরীক্ষা ২০২৬ এর সময়সূচী', desc: 'আগামী মাসের ১০ তারিখ থেকে হিফয ও জেনারেল উভয় বিভাগের মডেল টেস্ট ও অর্ধ-বার্ষিক পরীক্ষা শুরু হবে। সকল ক্যাডেটকে প্রস্তুতি নেওয়ার নির্দেশ দেওয়া হলো।' },
+                { id: 2, title: 'রমজানের ছুটি ও মাদরাসা বন্ধের নোটিশ', desc: 'পবিত্র রমজান উপলক্ষে মাদরাসার আবাসিক ও অনাবাসিক সকল ক্লাস নির্দিষ্ট সময়ের জন্য ছুটি থাকবে।' }
+            ],
+            media: [
+                { id: 1, title: 'দৈনিক সকালের কুরআন তিলাওয়াত সেশন', url: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=300' },
+                { id: 2, title: 'ক্যাডেটদের মাঝে পুরস্কার বিতরণী অনুষ্ঠান', url: 'https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&q=80&w=300' }
+            ],
+            students: [
+                { cadetNo: 'SQIM-2026-001', nameBn: 'আব্দুল্লাহ ইবনে নূর', nameEn: 'Abdullah Ibn Noor', dob: '2016-04-12', birthReg: '2016223456789', blood: 'O+', dept: 'হিফয', category: 'আবাসিক', class: 'প্রথম', group: 'হিফয', father: 'নূরুল ইসলাম', fPhone: '01815123456', presAddr: 'কক্সবাজার', photo: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=200' }
+            ],
+            staff: [
+                { id: 'SQIM-STAFF-001', name: 'হাফেজ রমজান আলী', role: 'প্রিন্সিপাল', mobile: '০১৮৩৬-১৫৯১৪৩', salary: 35000, absents: 0, blood: 'A+' },
+                { id: 'SQIM-STAFF-002', name: 'মোহাম্মদ রিয়াজ', role: 'শিক্ষা পরিচালক (এডমিন)', mobile: '০১৮৩৯-৩৬৯৩৮৮', salary: 30000, absents: 0, blood: 'B+' }
+            ]
+        };
+
+        window.onload = function() {
+            setNextCadetNo();
+            updateDashboardMetrics();
+            renderStudents();
+            renderStaff();
+            renderPayroll();
+            renderNotices();
+            renderMedia();
+            populateStudentSelectorForExams();
+            document.getElementById('setting-logo-url').value = MadrasahSystem.logo;
+            document.getElementById('main-logo-view').src = MadrasahSystem.logo;
+            document.getElementById('adm-date').valueAsDate = new Date();
+        };
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('bg-emerald-50', 'text-emerald-800', 'font-semibold'));
+            document.getElementById('view-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('bg-emerald-50', 'text-emerald-800', 'font-semibold');
+        }
+
+        function setNextCadetNo() {
+            document.getElementById('adm-cadet').value = `SQIM-2026-00${MadrasahSystem.students.length + 1}`;
+        }
+
+        function updateDashboardMetrics() {
+            document.getElementById('metric-students').innerText = MadrasahSystem.students.length;
+            document.getElementById('metric-staff').innerText = MadrasahSystem.staff.length;
+            document.getElementById('metric-payroll').innerText = '৬৫,০০০ ৳';
+        }
+
+        // UPDATE LOGO FUNCTION
+        function updateSystemLogo() {
+            const newUrl = document.getElementById('setting-logo-url').value;
+            if (newUrl) {
+                MadrasahSystem.logo = newUrl;
+                document.getElementById('main-logo-view').src = newUrl;
+                alert('সফটওয়্যার এবং আইডি কার্ডের লোগো সফলভাবে পরিবর্তিত হয়েছে!');
+            }
+        }
+
+        // SUBMIT NOTICE (ADMIN)
+        function submitNotice() {
+            const title = document.getElementById('notice-title').value;
+            const desc = document.getElementById('notice-desc').value;
+            if (!title || !desc) return alert('শিরোনাম এবং বিবরণ দুটোই পূরণ করুন!');
+
+            MadrasahSystem.notices.unshift({ id: Date.now(), title, desc });
+            alert('নতুন অফিশিয়াল নোটিশ জারি করা হয়েছে!');
+            document.getElementById('notice-title').value = '';
+            document.getElementById('notice-desc').value = '';
+            renderNotices();
+            switchTab('dashboard');
+        }
+
+        // RENDER NOTICES WITH DELETE CONTROL
+        function renderNotices() {
+            const container = document.getElementById('notice-board-list');
+            container.innerHTML = '';
+            MadrasahSystem.notices.forEach(notice => {
+                container.innerHTML += `
+                    <div class="bg-white p-3 rounded-lg border shadow-sm relative group">
+                        <h4 class="font-bold text-sm text-emerald-900">${notice.title}</h4>
+                        <p class="text-xs text-slate-600 mt-1">${notice.desc}</p>
+                        <button onclick="deleteNotice(${notice.id})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 opacity-0 group-hover:opacity-100 transition text-xs font-bold bg-red-50 px-1.5 py-0.5 rounded">
+                            <i class="fa-solid fa-trash"></i> ডিলিট
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        function deleteNotice(id) {
+            MadrasahSystem.notices = MadrasahSystem.notices.filter(n => n.id !== id);
+            renderNotices();
+        }
+
+        // SUBMIT MEDIA POST (ADMIN)
+        function submitMedia() {
+            const title = document.getElementById('media-title').value;
+            const url = document.getElementById('media-url').value;
+            if (!title || !url) return alert('ক্যাপশন এবং মিডিয়া ইউআরএল দিন!');
+
+            MadrasahSystem.media.unshift({ id: Date.now(), title, url });
+            alert('দৈনন্দিন কার্যক্রমের মিডিয়া সাকসেসফুলি আপলোড হয়েছে!');
+            document.getElementById('media-title').value = '';
+            document.getElementById('media-url').value = '';
+            renderMedia();
+            switchTab('dashboard');
+        }
+
+        // RENDER ACTIVITIES MEDIA WITH DELETE CONTROL
+        function renderMedia() {
+            const container = document.getElementById('media-board-list');
+            container.innerHTML = '';
+            MadrasahSystem.media.forEach(item => {
+                container.innerHTML += `
+                    <div class="bg-white border rounded-lg overflow-hidden shadow-sm relative group">
+                        <img src="${item.url}" class="w-full h-24 object-cover">
+                        <div class="p-1.5 text-[11px] font-semibold text-slate-700 text-center truncate">${item.title}</div>
+                        <button onclick="deleteMedia(${item.id})" class="absolute top-1 right-1 bg-black/70 text-white hover:bg-red-600 p-1 rounded transition text-[10px]">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        function deleteMedia(id) {
+            MadrasahSystem.media = MadrasahSystem.media.filter(m => m.id !== id);
+            renderMedia();
+        }
+
+        // CORE WORKFLOW LINKS (STUDENTS, STAFF, RESULTS)
+        function handleAdmissionSubmit(event) {
+            event.preventDefault();
+            const newSt = {
+                cadetNo: document.getElementById('adm-cadet').value,
+                nameBn: document.getElementById('adm-name-bn').value,
+                nameEn: document.getElementById('adm-name-en').value,
+                class: document.getElementById('adm-class').value,
+                group: document.getElementById('adm-group').value,
+                dept: document.getElementById('adm-dept').value,
+                category: document.getElementById('adm-cat').value,
+                blood: document.getElementById('adm-blood').value || 'O+',
+                fPhone: document.getElementById('adm-f-phone').value,
+                photo: document.getElementById('adm-photo').value
+            };
+            MadrasahSystem.students.push(newSt);
+            alert('ছাত্র সফলভাবে ভর্তি করা হয়েছে!');
+            setNextCadetNo(); updateDashboardMetrics(); renderStudents(); populateStudentSelectorForExams();
+            switchTab('students');
+        }
+
+        function renderStudents() {
+            const tbody = document.getElementById('student-table-body'); tbody.innerHTML = '';
+            MadrasahSystem.students.forEach(st => {
+                tbody.innerHTML += `
+                    <tr class="border-b">
+                        <td class="p-3 font-bold text-emerald-800">${st.cadetNo}</td>
+                        <td class="p-3 font-semibold">${st.nameBn}</td>
+                        <td class="p-3">${st.class} (${st.group})</td>
+                        <td class="p-3">${st.fPhone}</td>
+                        <td class="p-3 text-right"><button onclick="viewIdCard('${st.cadetNo}')" class="bg-emerald-50 text-emerald-800 text-xs px-2.5 py-1 rounded-lg border font-bold"><i class="fa-solid fa-id-card"></i> আইডি কার্ড</button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        function renderStaff() {
+            const grid = document.getElementById('staff-grid'); grid.innerHTML = '';
+            MadrasahSystem.staff.forEach(p => {
+                grid.innerHTML += `
+                    <div class="bg-white border rounded-xl p-4 shadow-sm">
+                        <h4 class="font-bold text-slate-800">${p.name}</h4>
+                        <span class="text-xs bg-slate-100 px-2 py-0.5 rounded font-semibold text-slate-600">${p.role}</span>
+                        <div class="text-xs mt-2 text-slate-500">মোবাইল: ${p.mobile} | আইডি: ${p.id}</div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderPayroll() {
+            const tbody = document.getElementById('payroll-table-body'); tbody.innerHTML = '';
+            MadrasahSystem.staff.forEach(p => {
+                tbody.innerHTML += `
+                    <tr class="border-b"><td class="p-3 font-mono">${p.id}</td><td class="p-3 font-bold">${p.name}</td><td class="p-3">0</td><td class="p-3 font-bold text-emerald-800">${p.salary.toLocaleString()} ৳</td></tr>
+                `;
+            });
+        }
+
+        function populateStudentSelectorForExams() {
+            const select = document.getElementById('exam-student-select'); select.innerHTML = '<option value="">নির্বাচন</option>';
+            MadrasahSystem.students.forEach(st => select.innerHTML += `<option value="${st.cadetNo}">${st.nameEn}</option>`);
+        }
+
+        function loadExamForm() {
+            const cadet = document.getElementById('exam-student-select').value;
+            const container = document.getElementById('marks-input-container');
+            const wrapper = document.getElementById('subject-fields-wrapper');
+            if(!cadet) return container.classList.add('hidden');
+            container.classList.remove('hidden'); wrapper.innerHTML = '';
+            
+            const subs = [{id:'b', name:'বাংলা'},{id:'a', name:'আরবী'},{id:'e', name:'ইংরেজী'},{id:'m', name:'গণিত'}];
+            subs.forEach(s => {
+                wrapper.innerHTML += `
+                    <div class="p-2 border rounded bg-slate-50 text-xs">
+                        <span class="font-bold text-emerald-800">${s.name}</span>
+                        <div class="grid grid-cols-2 gap-2 mt-1">
+                            <input type="number" id="mt-${s.id}" class="p-1 border rounded text-center" placeholder="MT (20)">
+                            <input type="number" id="ex-${s.id}" class="p-1 border rounded text-center" placeholder="Exam (80)">
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function calculateFinalResults() {
+            const cadet = document.getElementById('exam-student-select').value;
+            if(!cadet) return alert('শিক্ষার্থী সিলেক্ট করুন');
+            const student = MadrasahSystem.students.find(s => s.cadetNo === cadet);
+            
+            document.getElementById('rc-logo').src = MadrasahSystem.logo;
+            document.getElementById('rc-student-name').innerText = student.nameBn;
+            document.getElementById('rc-cadet-no').innerText = student.cadetNo;
+            
+            const tbody = document.getElementById('rc-marks-table-body'); tbody.innerHTML = '';
+            const subs = [{id:'b', name:'বাংলা'},{id:'a', name:'আরবী'},{id:'e', name:'ইংরেজী'},{id:'m', name:'গণিত'}];
+            let grand = 0;
+
+            subs.forEach(s => {
+                const mt = parseFloat(document.getElementById(`mt-${s.id}`).value) || 0;
+                const ex = parseFloat(document.getElementById(`ex-${s.id}`).value) || 0;
+                const tot = mt + ex; grand += tot;
+                tbody.innerHTML += `<tr class="border-b"><td class="p-2 text-left">${s.name}</td><td>${mt}</td><td>${ex}</td><td class="font-bold">${tot}</td><td>A+</td></tr>`;
+            });
+
+            document.getElementById('rc-grand-total').innerText = grand;
+            document.getElementById('simulated-report-card').classList.remove('hidden');
+        }
+
+        function viewIdCard(cadetNo) {
+            const student = MadrasahSystem.students.find(s => s.cadetNo === cadetNo);
+            document.getElementById('id-card-m-logo').src = MadrasahSystem.logo;
+            document.getElementById('id-photo').src = student.photo;
+            document.getElementById('id-name').innerText = student.nameBn;
+            document.getElementById('id-role').innerText = "ক্যাডেট শিক্ষার্থী";
+            document.getElementById('id-number').innerText = student.cadetNo;
+            document.getElementById('id-class-group').innerText = `${student.class} / ${student.group}`;
+            document.getElementById('id-blood').innerText = student.blood;
+            document.getElementById('id-card-preview-container').classList.remove('hidden');
+        }
+
+        function closeIdCardPreview() {
+            document.getElementById('id-card-preview-container').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
